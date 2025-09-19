@@ -1,97 +1,60 @@
-TERCERA ENTREGA PYTHON FLEX
-# Guia para un proyecto django
+# Proyecto Final - Biblioteca Virtual (Django)
 
-1. creamos una carpeta donde vamos a meter el proyecto
-2. entramos en la carpeta y la abrimos con vscode
-3. creamos el archivo .gitignore le guardamos lo generado por la pagina [gitignore.io](https://gitignore.io) seleccionando lo que van a utilizar (en nuestro caso `visualstudiocode`, `python` y `django`)
-4. creamos el entorno virtual `python -m venv <nombre_de_la_carpeta_que_contiene_el_entorno_virtual>` (`*`)
-5. agregar el nombre del entonrno virtual al .gitignore (`*`)
-6. inicializamos git
-7. creamos el primer commit
-8. conectamos nuestro repositorio con el repositorio en la nube (github u otro)
-9. hacemos el primer push
-10. activamos el entorno virtual (`*`)
+Este proyecto fue desarrollado como entrega final del curso de Python.  
+La aplicación simula una biblioteca virtual, permitiendo gestionar libros, socios y préstamos.  
 
-    ```shell
-    # Windows
-    source .venv/Scripts/activate
-    <!-- . venv/Scripts/activate (activar entorno virtual) -->
+## Funcionalidades principales
 
-    # Linux/Mac
-    source .venv/bin/activate
-    . venv/bin/activate 
-    ```
+- Inicio: Página principal con navegación hacia todas las secciones.
+- CRUD de Libros:
+  - Crear, listar, buscar, editar y eliminar libros.
+  - Vista de detalle para cada libro.
+  - Implementación con funciones (FBV) y clases basadas en vistas (CBV).
+- Socios:
+  - Registro de socios con nombre, apellido y grado.
+  - Listado y búsqueda de socios.
+- Préstamos:
+  - Registrar préstamos de libros a socios.
+  - Listar préstamos activos o devueltos.
+- Usuarios:
+  - Registro de usuario, inicio y cierre de sesión.
+  - Perfil de usuario con datos editables.
+  - Cambio de contraseña.
+- Vista "Acerca de mí": Información personal del autor del proyecto.
 
-11. instalar django con el manejador de paquetes de python `pip` con el comando `pip install Django`
-12. crear el requirements.txt con los datos de las dependencias usando el comando `pip freeze > requirements.txt` (`**`)
-13. crear el proyecto django donde estamos trabajando con el comando `django-admin startproject <nombre_del_proyecto> .` (`***`)
-14. probamos el proyecto ejecutando primero `python manage.py migrate` y luego `python manage.py runserver`
-15. creamos nuestra app principal con el comando `python manage.py startapp <nombre_de_la_app>`
-    - agregamos la app a el archivo settings.py
-    - creamos el archivo urls.py dentro de nuestra app
-    - agregamos el path que conecta al urls.py de la carpeta donde esta el settings.py al de nuestra app con el codigo `path('<url_que_quieran_poner>', include('<nombre_de_la_app>.urls'))`
-16. agregamos el valor `BASE_DIR / 'templates'` a la lista en la key `DIRS` de la variable `TEMPLATES` en el archivo settings.py
-17. creamos la carpeta templates a la altura de las apps
-18. crear un super usuario que nos permita acceder al apartado de admin de nuestra pagina ejecutando `python manage.py createsuperuser`
-    - tener en cuenta que cuando se solicita la password cuando escriben no se muestra en la terminal pero se esta escribiendo igual (esto es para que no se vea la password que estan configurando a modo de seguridad)
-19. crear vistas
-    - crear el path que conectara con su vista en el archivo `urls.py` de la app que corresponda
-    - crear la vista en el archivo `views.py` de la app que corresponda
-    - crear el template que utilizaran para la vista dentro de la carpeta templates
-    - agregar el link (etiqueta `a`) al path que corresponde a la vista
-20. crear modelos
-    1. crear modelo dentro de el archivo `models.py`
-        - heredan de `models.Model`
-        - los atributos los completan con los Fields que les brinda `models` ejemplo `models.CharField(max_length=20)`
-    2. generar una migracion con el comando `python manage.py makemigrations`
-    3. plasmar la migracion en la bd con el comando `python manage.py migrate`
-    4. En caso de modificacion de un modelo existente, creacion de otro modelo o borrado de un modelo volver a ejecutar los pasos 2 y 3
-        - tener en cuenta que para modificar el nombre y los atributos de un mismo modelo se deben hacer los pasos 2 y 3 una vez por la modificacion de los atributos y otro por el cambio en el nombre del modelo para no generar conflictos con django
-    5. registrar el modelo en el apartado de admin importando en el archivo `admin.py` el modelo y agregando el codigo `admin.site.register(<modelo_importado>)`
-        - en caso de ser varios modelos se puede agregar esta ultima linea para cada modelo o hacer una sola linea y pasarle todos los modelos dentro de una lista
-    6. importar el modelo creado en el views.py que corresponda para utilizarlo en las vistas
-21. crear formularios
-    1. crear el archivo `forms.py` dentro de la app que corresponda en caso que no este creado
-    2. crear el formulario
-        - heredan de `forms.Form`
-        - los atributos los completan con los Fields que les brinda `forms` ejemplo `forms.CharField(max_length=20)` (`****`)
-    3. importar el formulario creado en el views.py que corresponda para utilizarlo en las vistas
+## Tecnologías utilizadas
 
-(`*`) En caso de no utilizar entorno virtual omitir este paso  
-(`**`) Este paso se debe repetir tras cada instalacion de paquetes para mantener la informacion actualizada  
-(`***`) No olvidar el punto al final para que les genere el proyecto donde estan parados y no se creen carpetas de mas  
-(`****`) Como veran es muy similar a lo que se hace en los modelos (no es exactamente igual para todo)  
+- Python 3.13
+- Django 5.2.6
+- SQLite (base de datos)
+- HTML, CSS y herencia de templates
+- Bootstrap para el diseño
+- Pillow (para manejo de imágenes en los modelos)
 
+## Seguridad
 
-# Consigna
+- Uso de @login_required en vistas basadas en funciones.
+- Uso de LoginRequiredMixin en vistas basadas en clases.
+- Redirección automática al login si el usuario no está autenticado.
 
-Crea una web en Django utilizando Herencia de plantillas, con un modelo de por lo menos 3 clases, un formulario para ingresar datos a las 3 clases y un formulario para buscar algo en la BD, no hace falta que sea sobre las tres clases, con realizar búsqueda sobre una alcanzará.
+## Estructura destacada del proyecto
 
-> Te sugerimos que hagas una web estilo blog para ir preparando en la entrega final.
+- `inicio/`: App principal (libros, socios, préstamos, acerca de mí).
+- `cuentas/`: App de usuarios (login, registro, perfil, cambio de contraseña).
+- `templates/`: Carpeta con la base de templates y herencia.
+- `static/`: Archivos estáticos (CSS, imágenes del sistema).
+- `media/`: Carpeta para subir imágenes (no incluida en GitHub).
+- `.gitignore`: Configurado para excluir `db.sqlite3`, `media`, `__pycache__` y el entorno virtual.
 
-## Objetivos
+## Cómo ejecutar el proyecto
 
-Desarrollar tu primer WEB en Django utilizando patrón MVT
+1. Clonar el repositorio:
+   ```bash
+   git clone <url_del_repositorio>
 
-## Requisitos
-
-Link de GitHub con el proyecto totalmente subido a la plataforma.
-
-Proyecto Web Django con patrón MVT que incluya:
-
-- [ ] herencia templates
-- [ ] Por lo menos 1 clases en models.
-- [ ] Un formulario para insertar datos a por cada model creado..
-- [ ] Una vista que contenga el listado de los objetos del modelo.
-- [ ] Barra de busqueda en el listado.
-- [X] Readme que indique el orden en el que se prueban las cosas y/o donde están las funcionalidades.
-
-**IMPORTANTE**: A los puntos anteriores se le suma toda la estructura de archivos como lo vimos en clase.
-    - [X] .gitignore
-    - [X] requirements.txt
-    - [ ] la navegacion
-    - [X] etc
-
-## Formato
-
-Link al repositorio de GitHub con el nombre “TuPrimeraPagina+Apellido”  por ejemplo “TuPrimeraPagina+Fernandez”
+python -m venv venv
+venv\Scripts\activate 
+pip install -r requirements.txt
+7python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver

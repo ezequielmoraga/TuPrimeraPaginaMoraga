@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Listado de libros{% endblock %}
+
+{% block content %}
+<h2>Listado de Libros</h2>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Buscar libro..." value="{{ request.GET.q }}">
+    <button type="submit"> Buscar</button>
+</form>
+
+<ul>
+    {% for libro in libros %}
+        <li>
+            <strong>{{ libro.titulo }}</strong> - {{ libro.autor }}
+            <br>
+            <a href="{% url 'detalle_libro' libro.id %}">Ver detalle</a> |
+            <a href="{% url 'editar_libro' libro.id %}"> Editar</a> |
+            <a href="{% url 'eliminar_libro' libro.id %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <p> No hay libros cargados o no se encontraron resultados.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

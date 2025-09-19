@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Detalle del libro{% endblock %}
+
+{% block content %}
+<h2>{{ libro.titulo }}</h2>
+<p><strong>Autor:</strong> {{ libro.autor }}</p>
+<p><strong>Fecha de publicación:</strong> {{ libro.fecha_publicacion }}</p>
+<p><strong>Cantidad:</strong> {{ libro.cantidad }}</p>
+<p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+{% if libro.imagen %}
+    <img src="{{ libro.imagen.url }}" alt="{{ libro.titulo }}" width="200">
+{% endif %}
+
+<br>
+<a href="{% url 'editar_libro' libro.pk %}">✏️ Editar</a> |
+<a href="{% url 'listar_libros_cbv' %}">🔙 Volver al listado</a>
+{% endblock %}

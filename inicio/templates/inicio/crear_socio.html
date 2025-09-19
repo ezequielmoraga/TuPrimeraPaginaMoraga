@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Socio{% endblock %}
+
+{% block content %}
+<h2>Registrar un Socio</h2>
+
+<form action="{% url 'crear_socio' %}" method="POST">
+    {% csrf_token %}
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required><br><br>
+
+    <label for="grado">Grado (opcional):</label>
+    <input type="text" id="grado" name="grado"><br><br>
+
+    <button type="submit">Crear Socio</button>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Listado de libros{% endblock %}
+
+{% block content %}
+<h2>Listado de Libros</h2>
+
+<a href="{% url 'crear_libro_cbv' %}"> Crear nuevo libro</a>
+<ul>
+    {% for libro in libros %}
+        <li>
+            <a href="{% url 'detalle_libro' libro.pk %}">{{ libro.titulo }}</a>
+            ({{ libro.autor }}) |
+            <a href="{% url 'editar_libro' libro.pk %}">Editar</a> |
+            <a href="{% url 'eliminar_libro' libro.pk %}"> Eliminar</a>
+        </li>
+    {% empty %}
+        <p>No hay libros cargados en la biblioteca.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

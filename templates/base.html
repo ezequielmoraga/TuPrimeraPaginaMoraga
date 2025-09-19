@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Biblioteca{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Biblioteca Virtual </h1>
+        <nav>
+            <a href="{% url 'inicio' %}">Inicio</a>  |
+            <a href="{% url 'crear_libro2' %}">Crear Libro </a> |
+            <a href="{% url 'listar_libros' %}">Lista de Libros </a> |
+            <a href="{% url 'crear_prestamo' %}">Crear Préstamo </a>  |
+            <a href="{% url 'listar_prestamos' %}">Lista de Préstamos </a>  |
+            <a href="{% url 'crear_socio' %}">Crear Socio</a>  |
+            <a href="{% url 'listar_socios' %}">Lista de socios</a> |
+            <a href="{% url 'registrar' %}">Registrarse</a> |
+            <a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a> |
+            <a href="{% url 'perfil' %}">Perfil</a> |
+            <a href="{% url 'acerca' %}">Acerca de mí</a> |
+            <a href="{% url 'logout' %}">Salir</a>
+            
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Préstamo{% endblock %}
+
+{% block content %}
+<h2>Registrar un Préstamo</h2>
+
+<form action="{% url 'crear_prestamo' %}" method="POST">
+    {% csrf_token %}
+
+    <label for="socio">Socio:</label>
+    <select name="socio" id="socio" required>
+        {% for socio in socios %}
+            <option value="{{ socio.id }}">{{ socio.nombre }} {{ socio.apellido }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="libro">Libro:</label>
+    <select name="libro" id="libro" required>
+        {% for libro in libros %}
+            <option value="{{ libro.id }}">{{ libro.titulo }}</option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">Registrar Préstamo</button>
+</form>
+{% endblock %}
