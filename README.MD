@@ -58,3 +58,4 @@ pip install -r requirements.txt
 7python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+ este seria mi trabajo final se que me falto un monton pero por cuestiones de horaws y de practica es lo que logre termianr espero al devolucion saludos .
